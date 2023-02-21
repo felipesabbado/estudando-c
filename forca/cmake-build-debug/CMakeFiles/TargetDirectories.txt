@@ -1,3 +1,0 @@
-D:/Programacao/GitHub/estudando-c/forca/cmake-build-debug/CMakeFiles/forca.dir
-D:/Programacao/GitHub/estudando-c/forca/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Programacao/GitHub/estudando-c/forca/cmake-build-debug/CMakeFiles/rebuild_cache.dir
