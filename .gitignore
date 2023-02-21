@@ -1,5 +1,8 @@
 # Intellij IDEA config files
 .idea/
+forca/.idea/
+forca/cmake-build-debug
+forca/CMakeLists.txt
 
 # Prerequisites
 *.d
