@@ -1,5 +1,8 @@
 # Intellij IDEA config files
 .idea/
+adivinha/.idea/
+adivinha/cmake-build-debug/
+adivinha/CMakeLists.txt
 forca/.idea/
 forca/cmake-build-debug/
 forca/CMakeLists.txt
