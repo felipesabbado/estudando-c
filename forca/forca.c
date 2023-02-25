@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
+#include "forca.h"
 
 // variaveis globais
 char palavrasecreta[20];
 char chutes[26];
-int tentativas = 0;
+int chutesdados = 0;
 
 // funcoes
 void abertura() {
@@ -17,14 +20,14 @@ void chuta() {
     char chute;
     scanf(" %c", &chute);
 
-    chutes[tentativas] = chute;
-    tentativas++;
+    chutes[chutesdados] = chute;
+    chutesdados++;
 }
 
 int jachutou(char letra) {
     int achou = 0;
 
-    for (int j = 0; j < tentativas; j++) {
+    for (int j = 0; j < chutesdados; j++) {
         if (chutes[j] == letra) {
             achou = 1;
             break;
@@ -50,16 +53,56 @@ void desenhaforca() {
 }
 
 void escolhepalavra() {
-    sprintf(palavrasecreta, "MELANCIA");
+    FILE* f;
+    f = fopen("C:\\Users\\fsabb\\Documents\\GitHub\\estudando-c\\forca\\palavras.txt", "r");
+    if (f == 0) {
+        printf("Desculpe, banco de dados nao disponivel.\n\n");
+        exit(1);
+    }
+
+    int qtddepalavras;
+    fscanf(f, "%d", &qtddepalavras);
+
+    srand(time(0));
+    int randomico = rand() % qtddepalavras;
+
+    for (int i = 0; i <= randomico; i++) {
+        fscanf(f, "%s", palavrasecreta);
+    }
+
+    fclose(f);
+}
+
+int enforcou() {
+    int erros = 0;
+
+    for (int i = 0; i < chutesdados; i++) {
+        int existe = 0;
+
+        for (int j = 0; j < strlen(palavrasecreta); j++) {
+            if (chutes[i] == palavrasecreta[j]) {
+                existe = 1;
+                break;
+            }
+        }
+
+        if (!existe) erros++;
+    }
+
+    return erros >= 5;
+}
+
+int acertou() {
+    for (int i = 0; i < strlen(palavrasecreta); i++) {
+        if (!jachutou(palavrasecreta[i])) return 0;
+    }
+
+    return 1;
 }
 
 // main
 int main() {
-    int acertou = 0;
-    int enforcou = 0;
-
     escolhepalavra();
-
     abertura();
 
     do {
@@ -69,5 +112,5 @@ int main() {
         // captura um novo chute
         chuta();
 
-    } while (!acertou && !enforcou);
+    } while (!acertou() && !enforcou());
 }

@@ -6,6 +6,8 @@ adivinha/CMakeLists.txt
 forca/.idea/
 forca/cmake-build-debug/
 forca/CMakeLists.txt
+cmake-build-debug/
+CMakeLists.txt
 
 # Prerequisites
 *.d
