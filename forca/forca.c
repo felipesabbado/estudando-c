@@ -136,7 +136,7 @@ int chuteserrados() {
     return erros;
 }
 
-int enforcou() { return chuteserrados() >= 5; }
+int enforcou() { return chuteserrados() >= MAX_ERROS; }
 
 int acertou() {
     for (int i = 0; i < strlen(palavrasecreta); i++) {
@@ -146,12 +146,32 @@ int acertou() {
     return 1;
 }
 
+void letraschutadas() {
+    printf("\nLetras chutadas: ");
+    for (int i = 0; i < chutesdados; i++) {
+        int existe = 0;
+
+        for (int j = 0; j < strlen(palavrasecreta); j++) {
+            if (chutes[i] == palavrasecreta[j]) {
+                existe = 1;
+                break;
+            }
+        }
+
+        if (!existe) printf("%c ", chutes[i]);
+    }
+    printf("\n");
+}
+
 // main
 int main() {
     escolhepalavra();
     abertura();
 
     do {
+        // imprime letras chutadas
+        letraschutadas();
+
         // imprime a palavra secreta
         desenhaforca();
 

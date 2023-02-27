@@ -1,5 +1,6 @@
 // constantes
 #define TAMANHO_PALAVRA 20
+#define MAX_ERROS 5
 
 // assinatura das funções
 void abertura();
